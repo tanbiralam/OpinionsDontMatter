@@ -20,19 +20,17 @@ const App = () => {
   const [theme, setTheme] = useState("winter");
 
   return (
-    <>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <Header />
-        <div
-          className="flex flex-col items-center p-4 md:p-10"
-          data-theme={theme}
-        >
-          <div className="max-w-2xl w-full items-center">
-            <RouterProvider router={router} />
-          </div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Header />
+      <div
+        className="flex flex-col items-center p-4 md:p-10"
+        data-theme={theme}
+      >
+        <div className="max-w-2xl w-full items-center">
+          <RouterProvider router={router} />
         </div>
-      </ThemeContext.Provider>
-    </>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
