@@ -23,20 +23,6 @@ const Hero = () => {
           </option>
           <option>Light</option>
           <option>Dark</option>
-          <option>Cupcake</option>
-          <option>Bumblebee</option>
-          <option>Emerald</option>
-          <option>Corporate</option>
-          <option>Synthwave</option>
-          <option>Retro</option>
-          <option>Cyberpunk</option>
-          <option>Valentine</option>
-          <option>Halloween</option>
-          <option>Garden</option>
-          <option>Forest</option>
-          <option>Aqua</option>
-          <option>Lofi</option>
-          <option>Pastel</option>
         </select>
       </div>
     </div>
