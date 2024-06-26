@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/available.png";
+import logo from "../../../assets/available.png";
 
 //TODO: FIX THE ROUTING SETUP & MAKE THE NEW PROMPT BUTTON WORKABLE
 const Header = () => {
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
 
   return (
     <div className="mt-5 flex flex-row justify-between items-center gap-5 shadow-lg p-4 border rounded-lg">
-      <button className="btn btn-primary btn-sm md:btn-md">+ New Prompt</button>
+      <button
+        onClick={() => navigation("/new")}
+        className="btn btn-primary btn-sm md:btn-md"
+      >
+        + New Prompt
+      </button>
       <h1 className="font-bold text-3xl leading-none ">50 Best Prompts</h1>
 
       <div className="justify-center items-center flex flex-col gap-2">

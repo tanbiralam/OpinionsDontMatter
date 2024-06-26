@@ -1,18 +1,17 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
 import { ThemeContext } from "./context/ThemeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NewIdea from "./components/NewIdea";
+import HomeScreen from "./Screens/Home/HomeScreen";
+import NewPrompt from "./Screens/NewIdea/NewPrompt";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Hero />,
+    element: <HomeScreen />,
   },
   {
     path: "/new",
-    element: <NewIdea />,
+    element: <NewPrompt />,
   },
 ]);
 
@@ -21,7 +20,6 @@ const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Header />
       <div
         className="flex flex-col items-center p-4 md:p-10"
         data-theme={theme}

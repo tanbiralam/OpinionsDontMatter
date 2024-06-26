@@ -1,12 +1,12 @@
 import { ChevronLeft, Info, Send } from "lucide-react";
 import { useEffect, useState } from "react";
-import { db } from "../../utils";
-import { Ideas } from "../../utils/schema";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../../utils";
+import { Ideas } from "../../../utils/schema";
 
 //TODO: UPDATE THE COMPONENT NAMES FOR BETTER READABILITY
-const NewIdea = () => {
+const NewPrompt = () => {
   const navigation = useNavigate();
   const [idea, setIdea] = useState();
   const [username, setUsername] = useState();
@@ -112,4 +112,4 @@ const NewIdea = () => {
   );
 };
 
-export default NewIdea;
+export default NewPrompt;
