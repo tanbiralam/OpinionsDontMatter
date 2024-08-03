@@ -33,7 +33,7 @@ function HomeScreen() {
       <Header />
       <Hero />
       <Tabs />
-      <IdeaList ideaList={ideaList} />
+      <IdeaList ideaList={ideaList} refreshData={getAllIdeas} />
     </div>
   );
 }
