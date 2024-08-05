@@ -62,7 +62,7 @@ const IdeaItem = ({ idea, index, refreshData }) => {
             className={`text-lg hover:bg-gray-200 rounded-md p-1 cursor-pointer
               ${checkIsAlreadyDownVoted(idea.id) && "bg-slate-200"}`}
           >
-            👎
+            💩
           </h2>
         </div>
       </div>

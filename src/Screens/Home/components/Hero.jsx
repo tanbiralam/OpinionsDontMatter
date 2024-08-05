@@ -24,7 +24,7 @@ const Hero = () => {
           + New Rant
         </button>
         <h1 className="font-bold text-2xl md:text-3xl leading-tight text-center md:text-left">
-          Unwanted Opinions
+          PointlessPoints
         </h1>
       </div>
 
