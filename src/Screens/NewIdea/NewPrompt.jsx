@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
 
+const RATE_LIMIT_MINUTES = 10;
+
 const NewOpinion = () => {
   const navigate = useNavigate();
   const [ideaContent, setIdeaContent] = useState("");
   const [username, setUsername] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isUserExisting, setIsUserExisting] = useState(false);
+  const [rateLimitReached, setRateLimitReached] = useState(false);
 
   useEffect(() => {
     const savedUsername = localStorage.getItem("username");
@@ -18,9 +21,25 @@ const NewOpinion = () => {
       setUsername(savedUsername);
       setIsUserExisting(true);
     }
+
+    // Check rate limit
+    const lastOpinionTimestamp = localStorage.getItem("lastOpinionTimestamp");
+    if (lastOpinionTimestamp) {
+      const diffMinutes = moment().diff(
+        moment(lastOpinionTimestamp),
+        "minutes"
+      );
+      if (diffMinutes < RATE_LIMIT_MINUTES) {
+        setRateLimitReached(true);
+      }
+    }
   }, []);
 
   const handleSave = async () => {
+    if (rateLimitReached) {
+      return;
+    }
+
     try {
       const result = await db
         .insert(Ideas)
@@ -33,8 +52,10 @@ const NewOpinion = () => {
 
       if (result) {
         localStorage.setItem("username", username);
+        localStorage.setItem("lastOpinionTimestamp", moment().toISOString());
         setIdeaContent("");
         setShowAlert(true);
+        setRateLimitReached(true);
         setTimeout(() => setShowAlert(false), 5000);
       }
     } catch (error) {
@@ -59,18 +80,29 @@ const NewOpinion = () => {
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span className="text-white">Your idea has been submitted!</span>
+          <span className="text-white">Your opinion has been shared!</span>
+        </div>
+      )}
+      {rateLimitReached && (
+        <div
+          role="alert"
+          className="alert bg-red-500 alert-warning mt-5 shadow-lg"
+        >
+          <span className="text-white font-bold  flex items-center gap-2">
+            <p>NOTE</p>You can only share one opinion every {RATE_LIMIT_MINUTES}{" "}
+            minutes.
+          </span>
         </div>
       )}
       <button className="btn mt-7" onClick={() => navigate("/")}>
         <ChevronLeft />
         Back
       </button>
-      <h2 className="text-2xl font-bold mt-5">Share Your Best Prompt</h2>
+      <h2 className="text-2xl font-bold mt-5">Share Your Unwanted Opinion</h2>
 
       <div className="flex flex-col mt-7 gap-2">
         <label htmlFor="ideaContent" className="font-bold">
-          Your Prompt
+          Your Opinion
         </label>
         <textarea
           id="ideaContent"
@@ -103,7 +135,7 @@ const NewOpinion = () => {
 
       <button
         className="btn w-full btn-primary mt-7"
-        disabled={!ideaContent || !username}
+        disabled={!ideaContent || !username || rateLimitReached}
         onClick={handleSave}
       >
         <Send className="h-4 w-4" />
