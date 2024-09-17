@@ -35,11 +35,17 @@ function HomeScreen() {
   }, [fetchAllIdeas]);
 
   return (
-    <>
+    <div className="flex flex-col gap-2 ">
       <Hero />
       <Tabs />
       <IdeaList ideaList={ideaList} refreshData={fetchAllIdeas} />
-    </>
+      <footer className="text-center mb-2 font-semibold">
+        Built by{" "}
+        <a href="https://x.com/iamtanbirr" target="_blank">
+          @Tanbir
+        </a>
+      </footer>
+    </div>
   );
 }
 

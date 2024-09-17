@@ -10,7 +10,7 @@ const Tabs = () => {
   }, [params]);
 
   return (
-    <div role="tablist" className="tabs-bordered tabs">
+    <div role="tablist" className="tabs-bordered tabs mt-2">
       <a
         role="tab"
         onClick={() => setActiveTab("#hot")}
