@@ -35,11 +35,11 @@ function HomeScreen() {
   }, [fetchAllIdeas]);
 
   return (
-    <div>
+    <>
       <Hero />
       <Tabs />
       <IdeaList ideaList={ideaList} refreshData={fetchAllIdeas} />
-    </div>
+    </>
   );
 }
 

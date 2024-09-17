@@ -14,18 +14,18 @@ const Hero = () => {
   };
 
   return (
-    <div className="my-10 flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-5">
       {/* Header Section */}
-      <div className="mt-5 flex flex-col md:flex-row justify-between items-center gap-5 shadow-lg p-4 border rounded-lg w-full max-w-2xl mx-auto">
+      <div className="mt-5 flex flex-row justify-between items-center gap-5 shadow-lg p-4 border rounded-lg w-full max-w-2xl mx-auto">
+        <h1 className="font-bold text-2xl md:text-3xl leading-tight text-center md:text-left">
+          PointlessPoints
+        </h1>
         <button
           onClick={() => navigation("/new")}
           className="btn text-white btn-primary btn-sm md:btn-md"
         >
           + New Rant
         </button>
-        <h1 className="font-bold text-2xl md:text-3xl leading-tight text-center md:text-left">
-          PointlessPoints
-        </h1>
       </div>
 
       {/* Lottie Animation Section */}
@@ -38,11 +38,11 @@ const Hero = () => {
         Opinions That No One Asked For!!!
       </h2>
       <h2 className="text-xl text-center my-3">
-        <strong className="text-red-100 text-2xl">
+        <strong className="text-white text-2xl">
           Because your opinion totally matters.
         </strong>{" "}
         Share your most controversial takes, even if no one cares.
-        <p className="text-sm font-semibold">No Account Needed.</p>
+        <p className="text-sm font-bold">No Account Needed.</p>
       </h2>
     </div>
   );
