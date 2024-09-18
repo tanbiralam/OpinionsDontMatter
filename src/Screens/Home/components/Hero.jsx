@@ -18,7 +18,7 @@ const Hero = () => {
       {/* Header Section */}
       <div className="mt-3 flex justify-between items-center gap-5 p-4 shadow-lg border rounded-lg w-full max-w-2xl mx-4 md:mx-0">
         <h1 className="font-bold text-2xl md:text-3xl text-center md:text-left">
-          PointlessPoints
+          Rantle
         </h1>
         <button
           onClick={() => navigation("/new")}
