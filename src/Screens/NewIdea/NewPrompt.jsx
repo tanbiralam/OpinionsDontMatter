@@ -4,14 +4,14 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
+import toast, { Toaster } from "react-hot-toast";
 
-const RATE_LIMIT_MINUTES = 10;
+const RATE_LIMIT_MINUTES = 1;
 
 const NewOpinion = () => {
   const navigate = useNavigate();
   const [ideaContent, setIdeaContent] = useState("");
   const [username, setUsername] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [isUserExisting, setIsUserExisting] = useState(false);
   const [rateLimitReached, setRateLimitReached] = useState(false);
 
@@ -24,6 +24,8 @@ const NewOpinion = () => {
 
     // Check rate limit
     const lastOpinionTimestamp = localStorage.getItem("lastOpinionTimestamp");
+    const rateLimitToastShown = localStorage.getItem("rateLimitToastShown");
+
     if (lastOpinionTimestamp) {
       const diffMinutes = moment().diff(
         moment(lastOpinionTimestamp),
@@ -31,6 +33,16 @@ const NewOpinion = () => {
       );
       if (diffMinutes < RATE_LIMIT_MINUTES) {
         setRateLimitReached(true);
+        // Show toast only if it hasn't been shown before
+        if (!rateLimitToastShown) {
+          toast.error(
+            `You can only share one opinion every ${RATE_LIMIT_MINUTES} minutes.`
+          );
+          localStorage.setItem("rateLimitToastShown", "true");
+        }
+      } else {
+        // Reset the flag after the rate limit time has passed
+        localStorage.removeItem("rateLimitToastShown");
       }
     }
   }, []);
@@ -54,9 +66,8 @@ const NewOpinion = () => {
         localStorage.setItem("username", username);
         localStorage.setItem("lastOpinionTimestamp", moment().toISOString());
         setIdeaContent("");
-        setShowAlert(true);
+        toast.success("Your opinion has been shared!");
         setRateLimitReached(true);
-        setTimeout(() => setShowAlert(false), 5000);
       }
     } catch (error) {
       console.error("Error saving idea:", error);
@@ -66,35 +77,7 @@ const NewOpinion = () => {
   return (
     <>
       <div className="h-screen w-full">
-        {showAlert && (
-          <div role="alert" className="alert alert-success mt-5 shadow-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 shrink-0 stroke-current"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="text-white">Your opinion has been shared!</span>
-          </div>
-        )}
-        {rateLimitReached && (
-          <div
-            role="alert"
-            className="alert bg-red-500 alert-warning mt-5 shadow-lg"
-          >
-            <span className="text-white font-bold  flex items-center gap-2">
-              <p>NOTE</p>You can only share one opinion every{" "}
-              {RATE_LIMIT_MINUTES} minutes.
-            </span>
-          </div>
-        )}
+        <Toaster position="bottom-right" reverseOrder={false} />{" "}
         <button className="btn mt-7 ml-2" onClick={() => navigate("/")}>
           <ChevronLeft />
           Back
@@ -102,7 +85,6 @@ const NewOpinion = () => {
         <h2 className="text-2xl font-bold mt-5 ml-2">
           Share Your Unwanted Opinion
         </h2>
-
         <div className="flex flex-col mt-7 gap-2 m-2">
           <label htmlFor="ideaContent" className="font-bold">
             Your Opinion
@@ -115,7 +97,6 @@ const NewOpinion = () => {
             placeholder="Enter your prompt here"
           ></textarea>
         </div>
-
         {!isUserExisting && (
           <div className="flex flex-col mt-7 gap-2 m-2">
             <label
@@ -138,9 +119,8 @@ const NewOpinion = () => {
             />
           </div>
         )}
-
         <button
-          className="btn w-full btn-primary mt-7"
+          className="btn w-full btn-primary bg-slate-600 text-white mt-7"
           disabled={!ideaContent || !username || rateLimitReached}
           onClick={handleSave}
         >
