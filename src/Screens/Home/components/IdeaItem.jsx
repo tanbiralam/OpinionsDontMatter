@@ -8,6 +8,8 @@ import {
   upvote,
 } from "../../../service";
 
+//TODO: FIX THE FLICKER ISSUE WHILE CLICKING THE DOWNVOTE OR UPVOTE.
+
 /* eslint-disable react/prop-types */
 const IdeaItem = ({ idea, index, refreshData }) => {
   const upvoteHandler = async () => {
