@@ -50,13 +50,6 @@ function HomeScreen() {
         // Show IdeaList once loading is complete
         <OpinionList ideaList={ideaList} refreshData={fetchAllIdeas} />
       )}
-
-      <footer className="text-center mb-2 font-semibold">
-        Built by{" "}
-        <a href="https://x.com/iamtanbirr" target="_blank">
-          @Tanbir
-        </a>
-      </footer>
     </div>
   );
 }

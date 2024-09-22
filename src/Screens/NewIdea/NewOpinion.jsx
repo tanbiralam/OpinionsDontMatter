@@ -6,7 +6,7 @@ import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
 import toast, { Toaster } from "react-hot-toast";
 
-const RATE_LIMIT_MINUTES = 1;
+const RATE_LIMIT_MINUTES = 10;
 
 const NewOpinion = () => {
   const navigate = useNavigate();
@@ -120,7 +120,7 @@ const NewOpinion = () => {
           </div>
         )}
         <button
-          className="btn w-full btn-primary bg-slate-600 text-white mt-7"
+          className="btn w-full btn-default outline-none bg-slate-600 text-white mt-7"
           disabled={!ideaContent || !username || rateLimitReached}
           onClick={handleSave}
         >
@@ -128,12 +128,6 @@ const NewOpinion = () => {
           Submit
         </button>
       </div>
-      <footer className="text-center mb-2 font-semibold">
-        Built by{" "}
-        <a href="https://x.com/iamtanbirr" target="_blank">
-          @Tanbir
-        </a>
-      </footer>
     </>
   );
 };

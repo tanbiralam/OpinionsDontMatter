@@ -17,7 +17,7 @@ const Hero = () => {
     <div className="flex flex-col items-center gap-8 mx-2 sm:mx-0">
       {/* Header Section */}
       <div className="mt-3 flex justify-between items-center gap-5 p-4 shadow-lg border rounded-lg w-full max-w-2xl mx-4 md:mx-0">
-        <h1 className="font-bold text-2xl md:text-3xl text-center md:text-left">
+        <h1 className="font-bold text-white text-2xl md:text-3xl text-center md:text-left">
           Rantle
         </h1>
         <button
@@ -27,12 +27,10 @@ const Hero = () => {
           + New Opinion
         </button>
       </div>
-
       {/* Lottie Animation Section */}
       <div className="mt-6 w-full max-w-xs">
         <Lottie options={defaultOptions} height={150} width={150} />
       </div>
-
       {/* Hero Text Section */}
       <div className="text-center space-y-4">
         <h2 className="text-xl sm:text-4xl font-bold mt-5">
@@ -41,10 +39,10 @@ const Hero = () => {
         <h2 className="text-lg sm:text-2xl">
           <strong className="text-white text-xl sm:text-2xl">
             Because your opinion totally matters.
-          </strong>
+          </strong>{" "}
           Share your most controversial takes, even if no one cares.
         </h2>
-        <p className="text-sm font-bold mt-2 text-emerald-300">
+        <p className="text-sm font-bold mt-2 text-emerald-300 underline underline-offset-2">
           No Account Needed.
         </p>
         <p className="text-sm mt-2 font-bold text-gray-500">
