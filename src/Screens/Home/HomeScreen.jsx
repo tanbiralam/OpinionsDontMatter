@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
-import { desc, gte, lt } from "drizzle-orm"; // gte for filtering votes >= 10
+import { desc, gte, lt } from "drizzle-orm";
 import { Hero, Tabs, OpinionList, Loading } from "./components";
 
 function HomeScreen() {
@@ -17,7 +17,9 @@ function HomeScreen() {
       let result;
 
       // Determine what data to fetch based on the tab selected
-      switch (params.hash) {
+      const hash = params.hash || "#hot"; // Default to "#hot" if no hash
+
+      switch (hash) {
         case "#hot":
           // Fetch the latest opinions with less than 5 upvotes (hot)
           result = await db

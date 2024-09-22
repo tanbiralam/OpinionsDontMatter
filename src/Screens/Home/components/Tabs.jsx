@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("");
   const params = useLocation();
+  const [activeTab, setActiveTab] = useState(params.hash || "#hot"); // Default to #hot
 
   useEffect(() => {
-    setActiveTab(params.hash);
-  }, [params]);
+    // Only set activeTab if the hash changes
+    if (params.hash) {
+      setActiveTab(params.hash);
+    }
+  }, [params.hash]);
 
   return (
     <div role="tablist" className="tabs-bordered tabs mt-2">
