@@ -17,8 +17,8 @@ const Hero = () => {
     <div className="flex flex-col items-center gap-8 mx-2 sm:mx-0">
       {/* Header Section */}
       <div className="mt-3 flex justify-between items-center gap-5 p-4 shadow-lg border rounded-lg w-full max-w-2xl mx-4 md:mx-0">
-        <h1 className="font-bold text-white text-2xl md:text-3xl text-center md:text-left">
-          Rantle
+        <h1 className="font-bold text-white text-sm md:text-3xl text-center md:text-left">
+          OpinionsDon&rsquo;tMatter
         </h1>
         <button
           onClick={() => navigation("/new")}

@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
-import { desc } from "drizzle-orm";
+import { desc, gte, lt } from "drizzle-orm"; // gte for filtering votes >= 10
 import { Hero, Tabs, OpinionList, Loading } from "./components";
 
 function HomeScreen() {
@@ -10,21 +10,48 @@ function HomeScreen() {
   const [ideaList, setIdeaList] = useState([]);
   const [loading, setLoading] = useState(true); // State to manage loading status
 
-  // Use useCallback to memoize the fetchAllIdeas function
+  // Function to fetch ideas based on the tab selected
   const fetchAllIdeas = useCallback(async () => {
     try {
       setLoading(true); // Start loading
-      const orderByField =
-        params.hash === "#hot" || params.hash === "#top"
-          ? Ideas.vote
-          : Ideas.id;
+      let result;
 
-      const result = await db
-        .select()
-        .from(Ideas)
-        .orderBy(desc(orderByField))
-        .limit(20);
+      // Determine what data to fetch based on the tab selected
+      switch (params.hash) {
+        case "#hot":
+          // Fetch the latest opinions with less than 5 upvotes (hot)
+          result = await db
+            .select()
+            .from(Ideas)
+            .where(lt(Ideas.vote, 5)) // Filter for votes < 5
+            .orderBy(desc(Ideas.id)) // Sort by creation date (latest first)
+            .limit(10); // Limit to 10
+          break;
+        case "#new":
+          // Fetch all newly added opinions (new)
+          result = await db
+            .select()
+            .from(Ideas)
+            .orderBy(desc(Ideas.id)) // Sorting by creation date (latest first)
+            .limit(10); // Limit to 10
+          break;
 
+        case "#top":
+          // Fetch all opinions with more than 5 upvotes (top)
+          result = await db
+            .select()
+            .from(Ideas)
+            .where(gte(Ideas.vote, 5)) // Filter for votes >= 5
+            .orderBy(desc(Ideas.vote)) // Sorting by votes (highest first)
+            .limit(15); // Limit to 15
+          break;
+
+        default:
+          result = []; // Default to empty if no tab is selected
+          break;
+      }
+
+      // Update the state with fetched data
       setIdeaList(result);
     } catch (error) {
       console.error("Error fetching ideas:", error);
@@ -33,7 +60,7 @@ function HomeScreen() {
     }
   }, [params.hash]);
 
-  // Fetch ideas when component mounts or when params change
+  // Fetch ideas when component mounts or when params.hash changes
   useEffect(() => {
     fetchAllIdeas();
   }, [fetchAllIdeas]);
