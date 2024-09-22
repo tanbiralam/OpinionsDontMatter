@@ -9,3 +9,13 @@
 .text-yellow-500 {
     color: #f59e0b;
 }
+
+
+/* Example CSS */
+.opinion-list {
+    transition: opacity 0.3s ease;
+}
+
+.loading {
+    opacity: 0;
+}

@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
 import { desc } from "drizzle-orm";
-import { Hero, Tabs, IdeaList, Loading } from "./components";
+import { Hero, Tabs, OpinionList, Loading } from "./components";
 
 function HomeScreen() {
   const params = useLocation();
@@ -48,7 +48,7 @@ function HomeScreen() {
         <Loading />
       ) : (
         // Show IdeaList once loading is complete
-        <IdeaList ideaList={ideaList} refreshData={fetchAllIdeas} />
+        <OpinionList ideaList={ideaList} refreshData={fetchAllIdeas} />
       )}
 
       <footer className="text-center mb-2 font-semibold">

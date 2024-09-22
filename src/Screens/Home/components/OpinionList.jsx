@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import IdeaItem from "./IdeaItem";
+import OpinionItem from "./OpinionItem";
 
 const IdeaList = ({ ideaList }) => {
   const [ideas, setIdeas] = useState(ideaList);
@@ -16,7 +16,7 @@ const IdeaList = ({ ideaList }) => {
   return (
     <div>
       {ideas.map((idea, index) => (
-        <IdeaItem
+        <OpinionItem
           idea={idea}
           key={idea.id} // Use `idea.id` as the key for better performance
           index={index}

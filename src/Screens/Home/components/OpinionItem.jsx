@@ -10,7 +10,7 @@ import {
 } from "../../../service";
 
 /* eslint-disable react/prop-types */
-const IdeaItem = ({ idea, index, updateIdeaVote }) => {
+const OpinionItem = ({ idea, index, updateIdeaVote }) => {
   const [localVote, setLocalVote] = useState(idea.vote); // Store local vote state
   const [isUpvoting, setIsUpvoting] = useState(false); // Track upvote action
   const [isDownvoting, setIsDownvoting] = useState(false); // Track downvote action
@@ -67,9 +67,9 @@ const IdeaItem = ({ idea, index, updateIdeaVote }) => {
   };
 
   return (
-    <div className="my-4 p-4 border border-[#0EA5E9] shadow-lg rounded-lg mx-2 sm:mx-0">
+    <div className="my-4 p-4 bg-black/20 outline shadow-lg rounded-lg mx-2 sm:mx-0">
       <div className="flex justify-between items-start">
-        <h2 className="flex-grow text-[#D1D5DB]">
+        <h2 className="flex-grow font-bold text-[#D1D5DB]">
           <span className="font-semibold">{index + 1}. </span>
           {idea?.content}
         </h2>
@@ -106,4 +106,4 @@ const IdeaItem = ({ idea, index, updateIdeaVote }) => {
   );
 };
 
-export default IdeaItem;
+export default OpinionItem;

@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeScreen from "./Screens/Home/HomeScreen";
-import NewPrompt from "./Screens/NewIdea/NewPrompt";
+import NewOpinion from "./Screens/NewIdea/NewOpinion";
 
 Sentry.init({
   dsn: "https://19d226ef723aac5babf51c624d8a2be3@o4507923141754880.ingest.de.sentry.io/4507975061143632",
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/new",
-    element: <NewPrompt />,
+    element: <NewOpinion />,
   },
 ]);
 
