@@ -13,12 +13,14 @@ const Tabs = () => {
   }, [params.hash]);
 
   return (
-    <div role="tablist" className="tabs-bordered tabs mt-2">
+    <div className="flex justify-center space-x-2 mt-2">
       <a
         role="tab"
         onClick={() => setActiveTab("#hot")}
-        className={`tab text-lg font-bold ${
-          activeTab === "#hot" && "tab-active"
+        className={`flex items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+          activeTab === "#hot"
+            ? "bg-[#646EE4] text-white shadow-lg"
+            : "bg-gray-200 text-gray-800 hover:bg-gray-300"
         }`}
         href="/#hot"
       >
@@ -27,8 +29,10 @@ const Tabs = () => {
       <a
         role="tab"
         onClick={() => setActiveTab("#new")}
-        className={`tab text-lg font-bold ${
-          activeTab === "#new" && "tab-active"
+        className={`flex items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+          activeTab === "#new"
+            ? "bg-[#646EE4] text-white shadow-lg"
+            : "bg-gray-200 text-gray-800 hover:bg-gray-300"
         }`}
         href="/#new"
       >
@@ -37,8 +41,10 @@ const Tabs = () => {
       <a
         role="tab"
         onClick={() => setActiveTab("#top")}
-        className={`tab text-lg font-bold ${
-          activeTab === "#top" && "tab-active"
+        className={`flex items-center justify-center px-4 py-2 rounded-lg transition-all duration-300 ease-in-out ${
+          activeTab === "#top"
+            ? "bg-[#646EE4] text-white shadow-lg"
+            : "bg-gray-200 text-gray-800 hover:bg-gray-300"
         }`}
         href="/#top"
       >

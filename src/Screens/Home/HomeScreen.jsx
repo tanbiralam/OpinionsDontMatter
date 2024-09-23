@@ -17,35 +17,33 @@ function HomeScreen() {
       let result;
 
       // Determine what data to fetch based on the tab selected
-      const hash = params.hash || "#hot"; // Default to "#hot" if no hash
+      const hash = params.hash || "#new";
 
       switch (hash) {
         case "#hot":
-          // Fetch the latest opinions with less than 5 upvotes (hot)
           result = await db
             .select()
             .from(Ideas)
-            .where(lt(Ideas.vote, 5)) // Filter for votes < 5
-            .orderBy(desc(Ideas.id)) // Sort by creation date (latest first)
-            .limit(10); // Limit to 10
+            .where(gte(Ideas.vote, 5), lt(Ideas.vote, 11))
+            .orderBy(desc(Ideas.id))
+            .limit(10);
           break;
+
         case "#new":
-          // Fetch all newly added opinions (new)
           result = await db
             .select()
             .from(Ideas)
-            .orderBy(desc(Ideas.id)) // Sorting by creation date (latest first)
-            .limit(10); // Limit to 10
+            .orderBy(desc(Ideas.id))
+            .limit(10);
           break;
 
         case "#top":
-          // Fetch all opinions with more than 5 upvotes (top)
           result = await db
             .select()
             .from(Ideas)
-            .where(gte(Ideas.vote, 5)) // Filter for votes >= 5
-            .orderBy(desc(Ideas.vote)) // Sorting by votes (highest first)
-            .limit(15); // Limit to 15
+            .where(gte(Ideas.vote, 5))
+            .orderBy(desc(Ideas.vote))
+            .limit(50);
           break;
 
         default:
