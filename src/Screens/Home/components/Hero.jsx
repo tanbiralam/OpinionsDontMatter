@@ -45,6 +45,9 @@ const Hero = () => {
         <p className="text-sm font-bold mt-2 text-emerald-300 underline underline-offset-2">
           No Account Needed.
         </p>
+        <p className="text-sm font-bold mt-2 text-red-300 underline underline-offset-2">
+          You can share only one opinion every 5 minutes.
+        </p>
         <p className="text-sm mt-2 font-bold text-gray-500">
           Click 🔥 if you agree or 💩 if you disagree. Your feedback helps!
         </p>

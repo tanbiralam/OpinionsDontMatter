@@ -1,6 +1,6 @@
-# Rantle - Share Your Unwanted Opinions
+# OpinionsDon'tMatter - Share Your Unwanted Opinions
 
-Rantle is a web application that allows users to share and vote on controversial opinions anonymously.
+OpinionsDon'tMatter is a web application that allows users to share and vote on controversial opinions anonymously.
 
 ## Features
 
