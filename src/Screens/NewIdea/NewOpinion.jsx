@@ -94,7 +94,7 @@ const NewOpinion = () => {
             value={ideaContent}
             onChange={(e) => setIdeaContent(e.target.value)}
             className="border-primary textarea textarea-bordered"
-            placeholder="Enter your opinions here"
+            placeholder="Enter your opinion here"
           ></textarea>
         </div>
         {!isUserExisting && (
