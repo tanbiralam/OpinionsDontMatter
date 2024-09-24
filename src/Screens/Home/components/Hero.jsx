@@ -27,10 +27,27 @@ const Hero = () => {
           + New Opinion
         </button>
       </div>
+
+      {/* Product Hunt Badge */}
+      <div className="mt-4">
+        <a
+          href="https://www.producthunt.com/posts/opinionsdon-tmatter?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-opinionsdon&#0045;tmatter"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=491616&theme=dark"
+            alt="OpinionsDon’tMatter - Opinions That No One Asked For!!! | Product Hunt"
+            style={{ width: "250px", height: "54px" }}
+          />
+        </a>
+      </div>
+
       {/* Lottie Animation Section */}
       <div className="mt-6 w-full max-w-xs">
         <Lottie options={defaultOptions} height={150} width={150} />
       </div>
+
       {/* Hero Text Section */}
       <div className="text-center space-y-4">
         <h2 className="text-xl sm:text-4xl font-bold mt-5">
