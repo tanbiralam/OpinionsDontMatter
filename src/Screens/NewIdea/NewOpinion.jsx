@@ -76,7 +76,7 @@ const NewOpinion = () => {
 
   return (
     <>
-      <div className="h-screen w-full">
+      <div className="w-full">
         <Toaster position="bottom-right" reverseOrder={false} />{" "}
         <button className="btn mt-7 ml-2" onClick={() => navigate("/")}>
           <ChevronLeft />
