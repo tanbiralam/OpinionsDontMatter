@@ -6,7 +6,7 @@ import { db } from "../../../utils";
 import { Ideas } from "../../../utils/schema";
 import toast, { Toaster } from "react-hot-toast";
 
-const RATE_LIMIT_MINUTES = 5;
+const RATE_LIMIT_MINUTES = 15;
 
 const NewOpinion = () => {
   const navigate = useNavigate();
