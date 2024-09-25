@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { eq } from "drizzle-orm";
 import { db } from "../../../../utils";
 import { Ideas } from "../../../../utils/schema";
@@ -7,6 +7,7 @@ import {
   checkIsAlreadyUpVoted,
   downvote,
   upvote,
+  initCrypto,
 } from "../../../service";
 
 /* eslint-disable react/prop-types */
@@ -15,6 +16,13 @@ const OpinionItem = ({ idea, index, updateIdeaVote }) => {
   const [isUpvoting, setIsUpvoting] = useState(false); // Track upvote action
   const [isDownvoting, setIsDownvoting] = useState(false); // Track downvote action
   const [isAnimating, setIsAnimating] = useState(false); // Control animation
+
+  useEffect(() => {
+    const initializeCrypto = async () => {
+      await initCrypto();
+    };
+    initializeCrypto();
+  }, []);
 
   const upvoteHandler = async () => {
     if (isUpvoting || checkIsAlreadyUpVoted(idea.id)) return; // Prevent multiple votes while updating
@@ -77,7 +85,7 @@ const OpinionItem = ({ idea, index, updateIdeaVote }) => {
           <h2
             onClick={upvoteHandler}
             className={`text-lg hover:bg-gray-200 rounded-md p-1 cursor-pointer
-          ${checkIsAlreadyUpVoted(idea.id) && "bg-slate-200"}`}
+            ${checkIsAlreadyUpVoted(idea.id) && "bg-slate-200"}`}
             style={{ pointerEvents: isUpvoting ? "none" : "auto" }} // Disable voting while processing
           >
             🔥
@@ -92,7 +100,7 @@ const OpinionItem = ({ idea, index, updateIdeaVote }) => {
           <h2
             onClick={downvoteHandler}
             className={`text-lg hover:bg-gray-200 rounded-md p-1 cursor-pointer
-          ${checkIsAlreadyDownVoted(idea.id) && "bg-slate-200"}`}
+            ${checkIsAlreadyDownVoted(idea.id) && "bg-slate-200"}`}
             style={{ pointerEvents: isDownvoting ? "none" : "auto" }} // Disable voting while processing
           >
             💩
